@@ -39,10 +39,10 @@
 %\PassOptionsToPackage{cmyk}{xcolor}% NB: put this *before* \usepackage{pst-all}
 
 \usepackage[utf8]{inputenc} % Para poder escribir con acentos y ñ.
+\usepackage{cmap}
 \usepackage[T1]{fontenc}      % Para que haga bien la ``hyphenation''. No
                               % usar si no es necesario, porque ralentiza muchisimo la compilación.
 \usepackage{ae}               % Para que todas las fuentes sean Type1, y ninguna Type3.
-\usepackage{cmap}
 \usepackage[spanish, english]{babel}
 
 % Use this if you want to include pdf files in the final document
@@ -230,9 +230,9 @@ pdfborder={0 0 112.0}              %%% border-width of frames
 % BEGIN Fancy headers stuff
 \fancyhf{}
 
-\fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[L,RO]{\bfseries\thepage}
 \fancyhead[LO]{\bfseries\rightmark}
-\fancyhead[RE]{\bfseries\leftmark}
+\fancyhead[R]{\bfseries\leftmark}
 
 \makeatletter
 %\renewcommand{\chaptermark}[1]{\markboth{\@chapapp \ \thechapter . \ #1}{}}
