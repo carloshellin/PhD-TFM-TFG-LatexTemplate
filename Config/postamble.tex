@@ -112,12 +112,22 @@
 
 \ifthenelse{\equal{\myCoTutorGender}{male}}
 {                                                       
-  \newcommand{\wordCoTutorOrCoTutora}{cotutor}
+  \newcommand{\wordCoDirectorOrCoDirectora}{codirector}
+  \newcommand{\wordCoDirectorElOrLa}{el}  \newcommand{\wordCoTutorOrCoTutora}{cotutor}
   \newcommand{\wordCoTutorDelOrDeLa}{del}
 }
 {
-  \newcommand{\wordCoTutorOrCoTutora}{cotutora}
+  \newcommand{\wordCoDirectorOrCoDirectora}{codirectora}
+  \newcommand{\wordCoDirectorElOrLa}{la}  \newcommand{\wordCoTutorOrCoTutora}{cotutora}
   \newcommand{\wordCoTutorDelOrDeLa}{de la}
+}
+
+\ifthenelse{\equal{\myDepartmentSecretaryGender}{male}}     
+{                                                       
+  \newcommand{\wordSecretarioOrSecretaria}{Secretario}
+}
+{
+  \newcommand{\wordSecretarioOrSecretaria}{Secretaria}
 }
 
 
@@ -563,9 +573,27 @@
 
                                           }
                                           {
-                                            \newcommand{\myWorkType}{TFG}
-                                            \newcommand{\myDegreefull}{ERROR: Defined degree (\myDegree) unknown, check \texttt{config/myconfig.tex}} 
-                                            \newcommand{\myWorkTypeFull}{ERROR: Defined degree (\myDegree) unknown, check \texttt{config/myconfig.tex}}
+                                            \ifthenelse{\equal{\myDegree}{MUCTE}}
+                                            {
+                                              \newcommand{\myDegreefull}{Máster Universitario en Ciencia y Tecnología desde el Espacio}
+                                              \newcommand{\myDegreefullwrapped}{Máster Universitario en\\Ciencia y Tecnología desde el Espacio}
+                                              \newcommand{\myDegreefullwrappedUpcase}{\MakeUppercase{Máster Universitario en}\\\MakeUppercase{Ciencia y Tecnología desde el Espacio}}
+                                              \newcommand{\myWorkType}{TFM}
+                                              \ifthenelse{\equal{\myLanguage}{spanish}}
+                                              {
+                                                \newcommand{\myWorkTypeFull}{Trabajo Fin de Máster}
+                                              }
+                                              {        
+                                                % This could be translated. I'm leaving this in Spanish...
+                                                % \newcommand{\myWorkTypeFull}{Master's Thesis}
+                                                \newcommand{\myWorkTypeFull}{Trabajo Fin de Máster}
+                                              }
+                                            }
+                                            {
+                                              \newcommand{\myWorkType}{TFG}
+                                              \newcommand{\myDegreefull}{ERROR: Defined degree (\myDegree) unknown, check \texttt{config/myconfig.tex}} 
+                                              \newcommand{\myWorkTypeFull}{ERROR: Defined degree (\myDegree) unknown, check \texttt{config/myconfig.tex}}
+                                            }
                                           }
                                         }
                                       }
@@ -589,7 +617,62 @@
   }
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Now open publishing options
+\ifthenelse{\equal{\myAuthorizationOpenPublishing}{Yes}}
+{
+\newcommand{\boxAuthorizeOpenPublishing}{$\XBox$}
+\newcommand{\boxDoNotAuthorizeOpenPublishing}{$\Box$}
 
+\ifthenelse{\equal{\myAuthorizationOpenPublishingEmbargoMonths}{0}}
+{
+\newcommand{\boxEmbargoZeroMonths}{$\XBox$}
+}
+{
+\newcommand{\boxEmbargoZeroMonths}{$\Box$}
+}
+
+\ifthenelse{\equal{\myAuthorizationOpenPublishingEmbargoMonths}{6}}
+{
+\newcommand{\boxEmbargoSixMonths}{$\XBox$}
+}
+{
+\newcommand{\boxEmbargoSixMonths}{$\Box$}
+}
+
+\ifthenelse{\equal{\myAuthorizationOpenPublishingEmbargoMonths}{12}}
+{
+\newcommand{\boxEmbargoTwelveMonths}{$\XBox$}
+}
+{
+\newcommand{\boxEmbargoTwelveMonths}{$\Box$}
+}
+
+\ifthenelse{\equal{\myAuthorizationOpenPublishingEmbargoMonths}{18}}
+{
+\newcommand{\boxEmbargoEighteenMonths}{$\XBox$}
+}
+{
+\newcommand{\boxEmbargoEighteenMonths}{$\Box$}
+}
+
+\ifthenelse{\equal{\myAuthorizationOpenPublishingEmbargoMonths}{24}}
+{
+\newcommand{\boxEmbargoTwentyfourMonths}{$\XBox$}
+}
+{
+\newcommand{\boxEmbargoTwentyfourMonths}{$\Box$}
+}
+}
+{
+\newcommand{\boxAuthorizeOpenPublishing}{$\Box$}
+\newcommand{\boxEmbargoZeroMonths}{$\Box$}
+\newcommand{\boxEmbargoSixMonths}{$\Box$}
+\newcommand{\boxEmbargoTwelveMonths}{$\Box$}
+\newcommand{\boxEmbargoEighteenMonths}{$\Box$}
+\newcommand{\boxEmbargoTwentyfourMonths}{$\Box$}
+\newcommand{\boxDoNotAuthorizeOpenPublishing}{$\XBox$}
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -619,7 +702,7 @@
   % pdfkeywords={\myThesisKeywords, \myWorkTypeFull, \myDegreefull},
   pdfkeywords={\keywordsforpdf},
   pdfcreator={\LaTeX with hyperref package},
-  pdfproducer={rubber},
+  % pdfproducer={rubber},
   pdffitwindow={true},
   % This can be set in myconfig.tex
   urlcolor=\myurlcolor,
