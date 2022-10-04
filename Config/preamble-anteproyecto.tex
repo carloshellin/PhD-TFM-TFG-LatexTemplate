@@ -40,14 +40,16 @@
 
 \usepackage{iftex}
 \ifPDFTeX
+  \usepackage{cmap} % This package produces an error if we are not using pdflatex
+\fi
+\ifPDFTeX
   \usepackage[utf8]{inputenc} % Para poder escribir con acentos y ñ.
   \usepackage[T1]{fontenc}      % Para que haga bien la ``hyphenation''. No
 \fi                             % usar si no es necesario, porque ralentiza muchisimo la compilación.
 \usepackage{ae}               % Para que todas las fuentes sean Type1, y ninguna Type3.
-\ifPDFTeX
-  \usepackage{cmap} % This package produces an error if we are not using pdflatex
-\fi
 \usepackage[spanish, english]{babel}
+
+\usepackage{csquotes}
 
 % Use this if you want to include pdf files in the final document
 \usepackage[final]{pdfpages}
@@ -520,7 +522,7 @@ pdfborder={0 0 112.0}              %%% border-width of frames
 \makeatother
 
 % This should be relative to the anteproyecto path
-\newcommand{\myreferencespath}{../Book/}
+\newcommand{\myreferencespath}{./}
 
 %\providecommand{\DIFadd}[1]{{\protect\color{blue}#1}} %DIF PREAMBLE
 %\providecommand{\DIFdel}[1]{{\protect\color{red}\protect\scriptsize{#1}}}
