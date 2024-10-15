@@ -57,8 +57,8 @@
 % Use this if you want to delete headers and footers in empty pages
 \usepackage{emptypage}
 
-%\usepackage[nottoc]{tocbibind}
-\usepackage{tocbibind}
+\usepackage[nottoc]{tocbibind}
+%\usepackage{tocbibind}
 
 \usepackage{listings}
 \usepackage{longtable}
@@ -115,25 +115,28 @@
 \geometry{verbose,a4paper,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
 %\geometry{paperwidth=210mm,paperheight=297mm}
 
-\usepackage[
-%%ps2pdf,                          %%% hyper-references for ps2pdf
+\usepackage{hyperref}
+\usepackage{hyperxmp}
+\hypersetup{
+%% ps2pdf,                %%% hyper-references for ps2pdf
 bookmarks=true,%                   %%% generate bookmarks ...
 bookmarksnumbered=true,            %%% ... with numbers
 hypertexnames=false,               %%% needed for correct links to
-                                   %%% figures!!!
-%hypertexnames=true,               %%% needed for correct links on pagebackrefs!!!
+%%% figures!!!
+% hypertexnames=true,               %%% needed for correct links on pagebackrefs!!!
 breaklinks=true,                   %%% breaks lines, but links are very small
-%pagebackref=true,
-%linktocpage=true,                 %%% enlace en el numero de página.
+% pagebackref=true,
+% linktocpage=true,                 %%% enlace en el numero de página.
 linktoc=all,
 colorlinks=true,
-linkcolor=azul,    
-citecolor=verde,
-urlcolor=azul,                     %%% texto  con color (further
-                                   %%% modified in myconfig.tex)
-%linkbordercolor={0 0 1},           %%% blue frames around links
-pdfborder={0 0 112.0}              %%% border-width of frames 
-]{hyperref}                        %%% will be multiplied with 0.009 by ps2pdf
+linkcolor=blue,
+citecolor=green,
+urlcolor=blue,                     %%% texto  con color (further
+%%% modified in myconfig.tex)
+% linkbordercolor={0 0 1},           %%% blue frames around links
+pdfborder={0 0 112.0},              %%% border-width of frames
+hyperfootnotes=false
+}                        %%% will be multiplied with 0.009 by ps2pdf
 
 
 % Para numerar las \subsubsection
@@ -197,7 +200,7 @@ pdfborder={0 0 112.0}              %%% border-width of frames
 %\usepackage[printonlyused]{sty/acronym}
 
 % glossaries is better than the acronym package 
-\usepackage[acronym,shortcuts,nomain]{glossaries}
+%\usepackage[automake,acronym,shortcuts,nomain]{glossaries}
 
 % ifthen to allow using language dependent settings
 \usepackage{ifthen}
@@ -516,6 +519,18 @@ pdfborder={0 0 112.0}              %%% border-width of frames
 %\newcommand{\abc}{abc}  
 %\expandafter\makefirstuc\expandafter{\abc} 
 
+% This allow for easy break lines in table cells (see https://tex.stackexchange.com/questions/2441/how-to-add-a-forced-line-break-inside-a-table-cell)
+% Just use \thead{This is first line \\ and second line}
+% or \makecell{This is first line \\ and second line}
+% To change default horizontal and vertical alignments (default is cc)
+% \renewcommand{\cellalign}{vh}
+% \renewcommand{\theadalign}{vh}
+% where v is one of t, c, or b and h one of l, c, or r. Alternatively, for a single cell, you can
+% use the \makecell or \thead commands with the optional argument [vh].
+\usepackage{makecell}
+
+
+
 \makeatletter
 \def\input@path{{../}{../biblio/}}
 %or: \def\input@path{{/path/to/folder}{/path/to/other/folder}}
@@ -524,6 +539,15 @@ pdfborder={0 0 112.0}              %%% border-width of frames
 % This should be relative to the anteproyecto path
 \newcommand{\myreferencespath}{./}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% To allow checking for initial letter of string being a given one
+\usepackage{xstring}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% To allow bold + tt (from https://tex.stackexchange.com/questions/215482/how-do-i-get-texttt-with-bold-face-in-latex)
+\usepackage{bold-extra}
+
+
 %\providecommand{\DIFadd}[1]{{\protect\color{blue}#1}} %DIF PREAMBLE
 %\providecommand{\DIFdel}[1]{{\protect\color{red}\protect\scriptsize{#1}}}
 
@@ -531,112 +555,8 @@ pdfborder={0 0 112.0}              %%% border-width of frames
 %\providecommand{\DIFadd}[1]{{\protect\color{blue}\uwave{#1}}}
 \providecommand{\DIFadd}[1]{{\protect\color{blue}\textbf{#1}}}
 \providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}}                     
+\input{../Config/config-bibbackend.tex}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Bibliography backend control. It is recommended  that we use biblatex, as it
-% supports more keys (for example, when we cite a website we can specify the
-% visited date, in the .bib file). It also support multiple files more easily
-% and more bibliography styles
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Bibliography backend control. It is recommended  that we use biblatex, as it
-% supports more keys (for example, when we cite a website we can specify the
-% visited date, in the .bib file). It also support multiple files more easily
-% and more bibliography styles
-
-%\newcommand{\bibliosystem}{bibtex} % Valid options are biblatex or bibtex
-\newcommand{\bibliosystem}{biblatex} % Valid options are biblatex or bibtex
-
-\ifthenelse{\equal{\bibliosystem}{biblatex}}
-{
-  % Use biblatex instead of bibtex
-  \usepackage[style=ieee]{biblatex}
-  % This is a dirty hack, but should work... The reason to do so is to avoid
-  % the need of editing this file by the user (see Book/biblio files for more
-  % details)
-  \input{./biblio/bibliofiles.tex}
-
-  \ifdef{\mybibfileOne}
-  {
-  \addbibresource{\myreferencespath\mybibfileOne}
-  }
-  {
-  \errorYOUmustDEFINEatLEASTmybibfileOneInbibliofilesDOTtex
-  }
-  \ifdef{\mybibfileTwo}
-  {
-  \addbibresource{\myreferencespath\mybibfileTwo}
-  }
-  {
-  }
-  \ifdef{\mybibfileThree}
-  {
-  \addbibresource{\myreferencespath\mybibfileThree}
-  }
-  {
-  }
-
-  \ifdef{\mybibfileFour}
-  {
-  \addbibresource{\myreferencespath\mybibfileFour}
-  }
-  {
-  }
-  \ifdef{\mybibfileSix}
-  {
-  \addbibresource{\myreferencespath\mybibfileSix}
-  }
-  {
-  }
-
-  \ifdef{\mybibfileSeven}
-  {
-  \addbibresource{\myreferencespath\mybibfileSeven}
-  }
-  {
-  }
-
-  \ifdef{\mybibfileEight}
-  {
-  \addbibresource{\myreferencespath\mybibfileEight}
-  }
-  {
-  }
-
-  \ifdef{\mybibfileNine}
-  {
-  \addbibresource{\myreferencespath\mybibfileNine}
-  }
-  {
-  }
-
-  \ifdef{\mybibfileTen}
-  {
-  \addbibresource{\myreferencespath\mybibfileTen}
-  }
-  {
-  }
-
-}
-{
-  % Use bibtex
-  \usepackage[noadjust]{cite}      % Written by Donald Arseneau
-  % V1.6 and later of IEEEtran pre-defines the format
-  % of the cite.sty package \cite{} output to follow
-  % that of IEEE. Loading the cite package will
-  % result in citation numbers being automatically
-  % sorted and properly "ranged". i.e.,
-  % [1], [9], [2], [7], [5], [6]
-  % (without using cite.sty)
-  % will become:
-  % [1], [2], [5]--[7], [9] (using cite.sty)
-  % cite.sty's \cite will automatically add leading
-  % space, if needed. Use cite.sty's noadjust option
-  % (cite.sty V3.8 and later) if you want to turn this
-  % off. cite.sty is already installed on most LaTeX
-  % systems. The latest version can be obtained at:
-  % http://www.ctan.org/tex-archive/macros/latex/contrib/supported/cite/
-}
 
 %%% Local Variables:
 %%% TeX-master: "../book"

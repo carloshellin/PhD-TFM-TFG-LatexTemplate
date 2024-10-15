@@ -1,6 +1,8 @@
 #!/bin/bash
 
 
+#pandoc README.yaml README.md -t pdf -o README.pdf --variable urlcolor=blue --number-sections --table-of-contents --highlight-style kate -V colorlinks -V geometry:"top=2cm, bottom=1.5cm, left=2cm, right=2cm"  --toc-depth=4
+
 echo "Showing distribution tags:"
 git tag
 
@@ -20,6 +22,10 @@ read answer
 
 if [ "$answer" == "Y" ]
 then
+    # First make sure README.md is compiled
+    make 00-README.pdf
+    make -C Book
+
     DIST_FILE="00-PhDTFMTFG-LaTeX-Template-UAH-$tagname"
     DIRS="Anteproyecto Book Config Papeleo"
 
@@ -27,11 +33,12 @@ then
     git tag -a $tagname -m "$tagmessage"
     echo "Now generating distribution..."
 
-    FILES_ALL="windows-installation.txt Book/additionalContributors.txt"
+    FILES_ALL=".latexmkrc windows-installation.txt Book/additionalContributors.txt"
     for d in $DIRS
     do
 
-	FILES=`find $d -name "*.tex" -o -name "*.bib" -o -name "*.png" -o -name "*.jpg" -o -name "Makefile" -o -name "*.dia"`
+    # I add here Esquema_objetos.pdf to allow compilation
+	FILES=`find $d -name "*.tex" -o -name "*.bib" -o -name "*.png" -o -name "*.jpg" -o -name "Makefile" -o -name "*.dia" -o -name "Esquema_objetos.pdf"`
 	FILES_ALL="$FILES_ALL $FILES"
     done
 
@@ -46,6 +53,8 @@ then
     FILES_ALL="$FILES_ALL $FILES"
     FILES="Config/worktypes.txt"
     FILES_ALL="$FILES_ALL $FILES"
+    FILES="00-README.pdf RELEASE.txt"
+    FILES_ALL="$FILES_ALL $FILES"
 
     echo $FILES_ALL
 
@@ -54,6 +63,7 @@ then
 
     rsync -avu $DIST_FILE.tgz $DIST_FILE.zip ~/Dropbox/PhDTFMTFG-LaTeX-Template/
     cp README.md ~/Dropbox/PhDTFMTFG-LaTeX-Template/00-README.md
+    cp 00-README.pdf ~/Dropbox/PhDTFMTFG-LaTeX-Template/00-README.pdf
 else
     echo "You replied something different from 'Y', so that I'm exiting..."
     exit 1

@@ -62,6 +62,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 
+\usepackage{hyperxmp}
 \usepackage[
 %% ps2pdf,                %%% hyper-references for ps2pdf
 bookmarks=true,%                   %%% generate bookmarks ...
@@ -85,6 +86,14 @@ hyperfootnotes=false,
 
 % To uppercase first letter
 \usepackage{mfirstuc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% To allow checking for initial letter of string being a given one
+\usepackage{xstring}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% To allow bold + tt (from https://tex.stackexchange.com/questions/215482/how-do-i-get-texttt-with-bold-face-in-latex)
+\usepackage{bold-extra}
 
 %%% Local Variables:
 %%% TeX-master: "../book"

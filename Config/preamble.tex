@@ -38,6 +38,12 @@
 
 \synctex=1
 
+% To generate a proper PDF/A document
+%\usepackage[a-1b]{pdfx}
+
+% To allow changing the default alignment of an image
+\usepackage[export]{adjustbox}
+
 % To allow simple notes to be used in the review process (see defined
 % commands at the end of this file)
 \usepackage{todonotes} 
@@ -105,8 +111,6 @@
 \usepackage{array}
 
 
-\usepackage[center]{caption}
-\usepackage{subcaption}
 
 %% FIXING PROBLEM WITH ALL PAGES PRINTED IN COLOR
 \usepackage{xcolor}
@@ -161,7 +165,9 @@
 
 %\usepackage[hang, flushmargin]{footmisc}   
 
-\usepackage[
+\usepackage{hyperref}
+\usepackage{hyperxmp}
+\hypersetup{
 %% ps2pdf,                %%% hyper-references for ps2pdf
 bookmarks=true,%                   %%% generate bookmarks ...
 bookmarksnumbered=true,            %%% ... with numbers
@@ -179,9 +185,14 @@ urlcolor=blue,                     %%% texto  con color (further
 %%% modified in myconfig.tex)
 % linkbordercolor={0 0 1},           %%% blue frames around links
 pdfborder={0 0 112.0},              %%% border-width of frames 
-hyperfootnotes=false,
-]{hyperref}                        %%% will be multiplied with 0.009 by ps2pdf
-%\usepackage[all]{hypcap}
+hyperfootnotes=false
+}                        %%% will be multiplied with 0.009 by ps2pdf
+
+
+% \usepackage[all]{hypcap}
+\usepackage[center]{caption}
+\usepackage{subcaption}
+
 
 % Para numerar las \subsubsection
 \setcounter{secnumdepth}{5}
@@ -244,7 +255,7 @@ hyperfootnotes=false,
 % \usepackage[printonlyused]{sty/acronym}
 
 % glossaries is better than the acronym package 
-\usepackage[acronym,shortcuts,nomain,hyperfirst=false]{glossaries}
+\usepackage[automake,acronym,shortcuts,nomain,hyperfirst=false]{glossaries}
 % If you want to PERMANENTLY DISABLE HYPERLINKS, uncomment the following
 % line
 % \glsdisablehyper
@@ -612,7 +623,7 @@ hyperfootnotes=false,
 
 % As fancy underlining does not seem to compile with pdflatex, remove underline
 %\providecommand{\DIFadd}[1]{{\protect\color{blue}{\protect\uwave{#1}}}}
-\providecommand{\DIFadd}[1]{{\protect\color{blue}\textbf{#1}}}
+%\providecommand{\DIFadd}[1]{{\protect\color{blue}\textbf{#1}}}
 \providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}}                     
 
 
@@ -633,6 +644,13 @@ hyperfootnotes=false,
 \clubpenalty=10000
 \widowpenalty=10000
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% To allow checking for initial letter of string being a given one
+\usepackage{xstring}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% To allow bold + tt (from https://tex.stackexchange.com/questions/215482/how-do-i-get-texttt-with-bold-face-in-latex)
+\usepackage{bold-extra}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % As requested by Carlos Cruz on August 2020 To make "Appendix X
@@ -646,111 +664,36 @@ hyperfootnotes=false,
 \appto{\appendices}{\def\Hy@chapapp{Appendix}}
 \makeatother
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Bibliography backend control. It is recommended  that we use biblatex, as it
-% supports more keys (for example, when we cite a website we can specify the
-% visited date, in the .bib file). It also support multiple files more easily
-% and more bibliography styles
 
-%\newcommand{\bibliosystem}{bibtex} % Valid options are biblatex or bibtex
-\newcommand{\bibliosystem}{biblatex} % Valid options are biblatex or bibtex
+\input{../Config/config-bibbackend.tex}
 
-\ifthenelse{\equal{\bibliosystem}{biblatex}}
-{
-  % Use biblatex instead of bibtex
-  \usepackage[style=ieee]{biblatex}
-  % This is a dirty hack, but should work... The reason to do so is to avoid
-  % the need of editing this file by the user (see Book/biblio files for more
-  % details)
-  \input{./biblio/bibliofiles.tex}
+%\input{../Config/json-lang-lstlisting.tex}
 
-  \ifdef{\mybibfileOne}
-  {
-  \addbibresource{\myreferencespath\mybibfileOne}
-  }
-  {
-  \errorYOUmustDEFINEatLEASTmybibfileOneInbibliofilesDOTtex
-  }
-  \ifdef{\mybibfileTwo}
-  {
-  \addbibresource{\myreferencespath\mybibfileTwo}
-  }
-  {
-  }
-  \ifdef{\mybibfileThree}
-  {
-  \addbibresource{\myreferencespath\mybibfileThree}
-  }
-  {
-  }
-
-  \ifdef{\mybibfileFour}
-  {
-  \addbibresource{\myreferencespath\mybibfileFour}
-  }
-  {
-  }
-  \ifdef{\mybibfileSix}
-  {
-  \addbibresource{\myreferencespath\mybibfileSix}
-  }
-  {
-  }
-
-  \ifdef{\mybibfileSeven}
-  {
-  \addbibresource{\myreferencespath\mybibfileSeven}
-  }
-  {
-  }
-
-  \ifdef{\mybibfileEight}
-  {
-  \addbibresource{\myreferencespath\mybibfileEight}
-  }
-  {
-  }
-
-  \ifdef{\mybibfileNine}
-  {
-  \addbibresource{\myreferencespath\mybibfileNine}
-  }
-  {
-  }
-
-  \ifdef{\mybibfileTen}
-  {
-  \addbibresource{\myreferencespath\mybibfileTen}
-  }
-  {
-  }
-
+% I discovered lot of people used \input{Book/chapters/whatever.tex}, but the Book/ part is
+% not needed and breaks compilation if you try to compile it under GNU/Linux. This solves it
+% You can add additional directories if required
+\makeatletter
+\def\input@path{
+  {../},  % Path for general \input \include
 }
-{
-  % Use bibtex
-  \usepackage[noadjust]{cite}      % Written by Donald Arseneau
-  % V1.6 and later of IEEEtran pre-defines the format
-  % of the cite.sty package \cite{} output to follow
-  % that of IEEE. Loading the cite package will
-  % result in citation numbers being automatically
-  % sorted and properly "ranged". i.e.,
-  % [1], [9], [2], [7], [5], [6]
-  % (without using cite.sty)
-  % will become:
-  % [1], [2], [5]--[7], [9] (using cite.sty)
-  % cite.sty's \cite will automatically add leading
-  % space, if needed. Use cite.sty's noadjust option
-  % (cite.sty V3.8 and later) if you want to turn this
-  % off. cite.sty is already installed on most LaTeX
-  % systems. The latest version can be obtained at:
-  % http://www.ctan.org/tex-archive/macros/latex/contrib/supported/cite/
-}
+\makeatother
+
 
 % From https://tex.stackexchange.com/questions/50830/do-i-have-to-care-about-bad-boxes/50850#50850
 % To hide warning messages about slightly overfilled paragraphs
 % This should not be here but I want to avoid adding extra files to do tiny things...
 \hfuzz=2pt
 \vfuzz=2pt
+
+% Some TFG/TFM regulations state that double spacing should be used In my
+% opinion it is obsolete and ugly, but if you want to do so, add the following
+% command here:
+% \renewcommand{\baselinestretch}{2}
+
+% Some TFG/TFM regulations state that Arial font should be used. In my
+% opinion the LaTeX standard fornt is better, but if you want to do so, use Helvetica instead (Arial is not free) adding the following commands here:
+% \usepackage{helvet}
+% \renewcommand{\familydefault}{\sfdefault}
 
 
 %%% Local Variables:

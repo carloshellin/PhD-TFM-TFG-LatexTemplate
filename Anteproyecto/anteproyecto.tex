@@ -47,7 +47,7 @@
                                   % define your commonly used commands
                                   % (some examples are provided).
 
-\input{../Config/postamble.tex}   % DO NOT TOUCH THIS LINE. Yes, I know,
+\input{../Config/postamble-anteproyecto.tex}   % DO NOT TOUCH THIS LINE. Yes, I know,
                                   % "postamble" is not a valid word... :-)
 								  
 \newglossary[slg]{symbols}{sym}{sbl}{List of Symbols}
@@ -84,17 +84,20 @@
 \maketitle
 
 \begin{description}                               % DO NOT TOUCH THIS LINE
-\item[Título:] \myBookTitleSpanish                % DO NOT TOUCH THIS LINE
-  \ifthenelse{\equal{\myLanguage}{english}}   % DO NOT TOUCH THIS LINE
+\item[\expandafter\makefirstuc\expandafter{\wordAutorOrAutora}:] \myAuthorFullName                       % DO NOT TOUCH THIS LINE
+\item[\expandafter\makefirstuc\expandafter{\wordTutorOrTutores}:] \myAdvisors                   % DO NOT TOUCH THIS LINE
+  \item[Titulación:] \myDegreefull                % DO NOT TOUCH THIS LINE
+  \item[Título:] \myBookTitleSpanish              % DO NOT TOUCH THIS LINE
+  \ifthenelse{\equal{\myLanguage}{english}}       % DO NOT TOUCH THIS LINE
   {                                               % DO NOT TOUCH THIS LINE
   \item[Título en inglés:] \myBookTitleEnglish    % DO NOT TOUCH THIS LINE
   }                                               % DO NOT TOUCH THIS LINE
   {                                               % DO NOT TOUCH THIS LINE
   }                                               % DO NOT TOUCH THIS LINE
-\item[Departamento:] \myDepartment            % DO NOT TOUCH THIS LINE
-\item[\expandafter\makefirstuc\expandafter{\wordAutorOrAutora}:] \myAuthorFullName                       % DO NOT TOUCH THIS LINE
-\item[\expandafter\makefirstuc\expandafter{\wordTutorOrTutores}:] \myAdvisors                   % DO NOT TOUCH THIS LINE
+\item[Departamento:] \myDepartment                % DO NOT TOUCH THIS LINE
 \end{description}                                 % DO NOT TOUCH THIS LINE
+
+%\tableofcontents
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -113,7 +116,7 @@
   también se pueden poner referencias bibliográficas como \cite{moore2002}}.
 
 
-\section{Objetivos y desarrollo}
+\section{Objetivos}
 \label{sec:objetivos-y-campo}
 
 \textit{En este apartado se delimitan y explican con claridad los objetivos
