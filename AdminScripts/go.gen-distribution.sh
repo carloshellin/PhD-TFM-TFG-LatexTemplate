@@ -27,9 +27,12 @@ then
     make -C Book
 
     DIST_FILE="00-PhDTFMTFG-LaTeX-Template-UAH-$tagname"
-    DIRS="Anteproyecto Book Config Papeleo"
+    DIRS="Anteproyecto Book Config PapeleoTFG PapeleoTFM PapeleoPHD"
 
     echo "Tagging distribution with tag name [$tagname] and tag message [$tagmessage]..."
+    echo "$tagname" > RELEASE.txt
+    git add RELEASE.txt
+    git commit -m "Release $tagname"
     git tag -a $tagname -m "$tagmessage"
     echo "Now generating distribution..."
 
@@ -38,7 +41,7 @@ then
     do
 
     # I add here Esquema_objetos.pdf to allow compilation
-	FILES=`find $d -name "*.tex" -o -name "*.bib" -o -name "*.png" -o -name "*.jpg" -o -name "Makefile" -o -name "*.dia" -o -name "Esquema_objetos.pdf"`
+	FILES=`find $d -name ".gitignore" -o -name "*.tex" -o -name "*.bib" -o -name "*.png" -o -name "*.jpg" -o -name "Makefile" -o -name "*.dia" -o -name "Esquema_objetos.pdf"`
 	FILES_ALL="$FILES_ALL $FILES"
     done
 

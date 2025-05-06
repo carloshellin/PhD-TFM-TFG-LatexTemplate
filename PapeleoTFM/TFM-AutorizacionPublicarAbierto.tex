@@ -31,13 +31,15 @@
 % This is for rubber to clean additional files
 % rubber: clean anteproyecto.acn anteproyecto.acr anteproyecto.alg anteproyecto.cod anteproyecto.ist anteproyecto.out anteproyecto.sbl anteproyecto.slg anteproyecto.sym anteproyecto.lor
 
+\documentclass[11pt,a4paper,oneside]{article}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % BEGIN Preamble and configuration section
 % 
-\input{../../Config/preamble-solicitud.tex}    % DO NOT TOUCH THIS LINE. You can edit
-                                               % the file to modify some default settings
+\input{../Config/preamble.tex}    % DO NOT TOUCH THIS LINE. You can edit
+                                     % the file to modify some default settings
 
-\input{../../Config/myconfig.tex}    % DO NOT TOUCH THIS LINE, but EDIT THIS FILE 
+\input{../Config/myconfig.tex}    % DO NOT TOUCH THIS LINE, but EDIT THIS FILE
                                      % to set your specific settings (related
                                      % to the document language, your degree,
                                      % document details (such as title, author
@@ -47,25 +49,14 @@
                                      % define your commonly used commands
                                      % (some examples are provided).
 
-\input{../../Config/postamble-autorization.tex}   % DO NOT TOUCH THIS LINE. Yes, I know,
-                                     % "postamble" is not a valid word... :-)
-
-\input{../../Config/postamble-solicitud.tex}   % DO NOT TOUCH THIS LINE. 
+\input{../Config/postamble.tex}   % DO NOT TOUCH THIS LINE.
                                                % Yes, I know, "postamble" 
                                                % is not a valid word... :-)
                                                % This is just to remove
                                                % jury members in case the
                                                % work is a TFG
 
-% path to directories containing images
-\graphicspath{{../../logos/}{../../figures/}{../../diagrams/}} % Edit this to your
-                                                               % needs. Only
-                                                               % logos 
-                                                               % is really required
-                                                               % when you
-                                                               % generate 
-                                                               % your own content.
- 
+
 % END Preamble and configuration section
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
@@ -240,7 +231,7 @@ Reconocimiento-NoComercial-Sin-ObraDerivada.  Más información en:
 
 \begin{spacing}{0.8}
 
-{\footnotesize Los datos personales recogidos serán tratados por la Universidad de
+{\scriptsize Los datos personales recogidos serán tratados por la Universidad de
 Alcalá con la finalidad de gestionar su autorización para la inclusión
 del Trabajo de Fin de Máster en el Archivo Abierto Institucional
 e-BUAH de la Universidad y su acceso libre a través de Internet, así

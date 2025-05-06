@@ -2,7 +2,7 @@
 %
 % Generic template for the anteproyectos of TFC/TFM/TFGs
 %
-% $Id: autorizacionTutorPublicarRepositorio.tex,v 1.6 2019/05/22 07:01:51 macias Exp $
+% $Id: vistoBuenoTutorTFM.tex,v 1.2 2019/05/22 07:01:53 macias Exp $
 %
 % By:
 %  + Javier Macías-Guarasa. 
@@ -31,32 +31,33 @@
 % This is for rubber to clean additional files
 % rubber: clean anteproyecto.acn anteproyecto.acr anteproyecto.alg anteproyecto.cod anteproyecto.ist anteproyecto.out anteproyecto.sbl anteproyecto.slg anteproyecto.sym anteproyecto.lor
 
+\documentclass[11pt,a4paper,oneside]{article}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BEGIN Preamble and configuration section
 %
-\input{../../Config/preamble-letter.tex}    % DO NOT TOUCH THIS LINE. You can edit
-                               % the file to modify some default settings
+\input{../Config/preamble.tex}    % DO NOT TOUCH THIS LINE. You can edit
+                                  % the file to modify some default settings
                                    
-\input{../../Config/myconfig.tex}    % DO NOT TOUCH THIS LINE, but EDIT THIS FILE 
-                               % to set your specific settings (related
-                               % to the document language, your degree,
-                               % document details (such as title, author
-                               % (you), your email, name of the tribunal
-                               % members, document year, keyword and
-                               % palabras clave) and link colors), and
-                               % define your commonly used commands
-                               % (some examples are provided).
+\input{../Config/myconfig.tex}    % DO NOT TOUCH THIS LINE, but EDIT THIS FILE
+                                  % to set your specific settings (related
+                                  % to the document language, your degree,
+                                  % document details (such as title, author
+                                  % (you), your email, name of the tribunal
+                                  % members, document year, keyword and
+                                  % palabras clave) and link colors), and
+                                  % define your commonly used commands
+                                  % (some examples are provided).
 
-\input{../../Config/postamble.tex}   % DO NOT TOUCH THIS LINE. Yes, I know,
-                               % "postamble" is not a valid word... :-)
-
-
+\input{../Config/postamble.tex}   % DO NOT TOUCH THIS LINE. Yes, I know,
+                                  % "postamble" is not a valid word... :-)
 %
 % END Preamble and configuration section
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{AUTORIZACIÓN \MakeUppercase{\wordDelOrDeLos{} \wordTutorOrTutores} DEL TRABAJO FIN DE GRADO PARA PUBLICAR EN
-  EL REPOSITORIO INSTITUCIONAL E-BUAH}             % DO NOT TOUCH THIS LINE
+\title{VISTO BUENO \MakeUppercase{\wordDelOrDeLos{}
+    \wordTutorOrTutores} PARA EL DEPÓSITO DEL TRABAJO FIN DE MÁSTER} 
+                                                   % DO NOT TOUCH THIS LINE
 \date{}                                            % DO NOT TOUCH THIS LINE
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,16 +70,40 @@
 
 \thispagestyle{empty}
 
-\vspace{1cm}
+% \vspace{1cm}
 
-\myAdvisorsWithDonOrDona, \wordTutorOrTutores{} del Trabajo Fin de Grado de título:
-``\myBookTitle'' realizado por \wordDonOrDonaAutor{} \myAuthorFullName, por la presente \wordDaOrDan{} su
-conformidad para que el citado trabajo sea incluido en el repositorio
-institucional de documentos digitales de la Universidad, e-Buah.
+\myAdvisorsWithDonOrDona, \wordTutorOrTutores{} del Trabajo Fin de Máster
+``\myBookTitle'' realizado por \wordDonOrDonaAutor{} \myAuthorFullName, por la
+presente \wordDaOrDan{} su conformidad para que el citado trabajo sea
+presentado para su defensa.
 
 \vspace{1cm}
 
 $\XBox$ Sí
+
+\ifthenelse{\equal{\myDegree}{MUIE}}
+{
+  \vspace{0.5cm}
+  \ifthenelse{\equal{\myConfidentialContent}{No}}
+  {
+    ~~~~$\XBox$ NO sujeto a confidencialidad
+    
+    \vspace{0.5cm}
+    
+    ~~~~$\Box$ SÍ sujeto a confidencialidad
+    
+  }
+  {
+    ~~~~$\Box$ NO sujeto a confidencialidad
+    
+    \vspace{0.5cm}
+    
+    ~~~~$\XBox$ SÍ sujeto a confidencialidad
+    
+  }
+}
+{
+}
 
 \vspace{0.5cm}
 

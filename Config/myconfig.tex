@@ -58,6 +58,7 @@
 % GIST   - Grado en Ingeniería en Sistemas de Telecomunicación
 % GIC    - Grado en Ingeniería de Computadores
 % GII    - Grado en Ingeniería Informática
+% GMC    - Grado en Matemáticas y Computación
 % GSI    - Grado en Sistemas de Información
 % GISI   - Grado en Ingeniería en Sistemas de Información
 % GIEAI  - Grado en Ingeniería en Electrónica y Automática Industrial
@@ -68,6 +69,7 @@
 % MUIE   - Máster Universitario en Ingeniería Electrónica
 % MUCTE  - Máster Universitario en Ciencia y Tecnología desde el Espacio
 % MUDASW - Máster Universitario en Desarrollo Ágil de Software para la Web
+% MUC    - Máster Universitario en Ciberseguridad
 % PHDUAH - Doctorado UAH
 % PHDUPM - Doctorado UPM
 %
@@ -126,13 +128,19 @@
 \newcommand{\myAcademicTutorGender}{male}
 \newcommand{\myAcademicTutorDNI}{11111111-A}
 \newcommand{\myAcademicTutorDepartmentOrInstitution}{Departament of Computer Science} 
+\newcommand{\myAcademicTutorPosition}{Principal Scientist}
+\newcommand{\myAcademicTutorEmail}{roberto.barra@somewhere.com}
+\newcommand{\myAcademicTutorForeignUniversity}{Foreign University name}
+\newcommand{\myAcademicTutorForeignCity}{Foreign city name}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CoAdvisor data
 \newcommand{\myCoTutorFullName}{Nombre completo del cotutor} 
 \newcommand{\myCoTutorGender}{male}
 \newcommand{\myCoTutorDNI}{22222222-B}
-\newcommand{\myCoTutorDepartmentOrInstitution}{Universidad de Alcalá} 
+\newcommand{\myCoTutorDepartmentOrInstitution}{Universidad de Alcalá}
+\newcommand{\myCoTutorPosition}{Catedrática de Universidad}
+\newcommand{\myCoTutorEmail}{maria.guzman@uah.es}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Affiliation
@@ -152,30 +160,44 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Tribunal members & department staff
 \newcommand{\myTribunalPresident}{Name of the tribunal president}
+\newcommand{\myTribunalPresidentGender}{female}
 \newcommand{\myTribunalFirstSpokesperson}{Name of the first vocal}
+\newcommand{\myTribunalFirstSpokespersonGender}{female}
 \newcommand{\myTribunalSecondSpokesperson}{Name of the second vocal} 
+\newcommand{\myTribunalSecondSpokespersonGender}{female}
 \newcommand{\myTribunalAlternateMember}{Name of the alternate member}
+\newcommand{\myTribunalAlternateMemberGender}{female}
 \newcommand{\myTribunalSecretary}{Name of the secretary (if needed)}
 \newcommand{\myDepartmentSecretary}{María del Carmen Pérez Rubio} % Por TFGs & TFMs & MUSEA-TFMs paperwork
 \newcommand{\myDepartmentSecretaryGender}{female}                 % Por TFGs & TFMs & MUSEA-TFMs paperwork
 \newcommand{\myTFMComisionPresident}{Felipe Espinosa Zapata}      % Por MUIE TFMs, no need to define gender... presidentE always
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Grades. If set, the final grade will be automagically calculated in the
+% acta and rúbrica document
+\newcommand{\myAcademicTutorGrade}{7}
+\newcommand{\myTribunalGrade}{3}
+\newcommand{\myTribunalMHProposal}{NO} % Set this to YES or NO
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Calendar dates 
 
-\newcommand{\myThesisProposalDate}{16 de enero de 2020} % "Anteproyecto" date
+\newcommand{\myThesisProposalDate}{16 de enero de 2025} % "Anteproyecto" date
 
-\newcommand{\myThesisDepositDate}{1 de diciembre de 2022}
-\newcommand{\myThesisDepositDateEnglish}{December 1\textsuperscript{st}, 2022}
+\newcommand{\myThesisDepositDate}{15 de junio de 2025}
+\newcommand{\myThesisDepositDateEnglish}{June 15\textsuperscript{th}, 2025}
 
 % For RR, myThesisDefenseDate is date to be shown in the cover
-\newcommand{\myThesisDefenseYear}{2024}
-\newcommand{\myThesisDefenseDate}{16 de enero de \myThesisDefenseYear{}}
-\newcommand{\myThesisdefenseDateEnglish}{January 16\textsuperscript{th}, \myThesisDefenseYear{}}
+\newcommand{\myThesisAcademicYear}{2024/2025}
+\newcommand{\myThesisDefenseYear}{2025}
+\newcommand{\myThesisDefenseDate}{24 de junio de \myThesisDefenseYear{}}
+\newcommand{\myThesisdefenseDateEnglish}{June 24\textsuperscript{th}, \myThesisDefenseYear{}}
 % If you prefer British English for the date, use this:
 % \newcommand{\myThesisdefenseDateEnglish}{6\textsuperscript{th} of January, 2018}
 
-\newcommand{\myPaperworkDate}{10 de enero de 2023}
+\newcommand{\myPaperworkDate}{\myThesisDepositDate}
+\newcommand{\myPaperworkDateEnglish}{\myThesisDepositDateEnglish}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Open publication details
