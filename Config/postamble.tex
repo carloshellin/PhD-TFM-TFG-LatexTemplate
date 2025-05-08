@@ -588,9 +588,6 @@
                                               % \newcommand{\myWorkTypeFull}{Master's Thesis}
                                               \newcommand{\myWorkTypeFull}{Trabajo Fin de Máster}
                                             }
-
-
-
                                           }
                                           {
                                             \ifthenelse{\equal{\myDegree}{MUCTE}}
@@ -608,7 +605,7 @@
                                                 % \newcommand{\myWorkTypeFull}{Master's Thesis}
                                                 \newcommand{\myWorkTypeFull}{Trabajo Fin de Máster}
                                               }
-                                            }
+                                              }
                                             {
                                                 \ifthenelse{\equal{\myDegree}{MUDASW}}
                                                 {
@@ -626,13 +623,7 @@
                                                     \newcommand{\myWorkTypeFull}{Trabajo Fin de Máster}
                                                   }
                                                 }
-                                                {
-                                                  \newcommand{\myWorkType}{TFG}
-                                                  \newcommand{\myDegreefull}{ERROR: Defined degree (\myDegree) unknown, check \texttt{config/myconfig.tex}} 
-                                                  \newcommand{\myWorkTypeFull}{ERROR: Defined degree (\myDegree) unknown, check \texttt{config/myconfig.tex}}
-                                                }
-												{
-
+											{
                                             \ifthenelse{\equal{\myDegree}{GMC}}
                                             {
                                               \newcommand{\myDegreefull}{Grado en Matemáticas y Computación}
@@ -652,24 +643,25 @@
                                             {
                                             \ifthenelse{\equal{\myDegree}{MUC}}
                                             {
-                                            \newcommand{\myDegreefull}{Máster Universitario en Ciberseguridad}
-                                            \newcommand{\myDegreefullwrapped}{Máster Universitario en Ciberseguridad}
-                                            \newcommand{\myDegreefullwrappedUpcase}{\MakeUppercase{Máster Universitario en Ciberseguridad}}
-                                            \newcommand{\myWorkType}{TFM}
-                                            \ifthenelse{\equal{\myLanguage}{spanish}}
-                                            {
-                                            \newcommand{\myWorkTypeFull}{Trabajo Fin de Máster}
+                                                \newcommand{\myDegreefull}{Máster Universitario en Ciberseguridad}
+                                                \newcommand{\myDegreefullwrapped}{Máster Universitario en Ciberseguridad}
+                                                \newcommand{\myDegreefullwrappedUpcase}{\MakeUppercase{Máster Universitario en Ciberseguridad}}
+                                                \newcommand{\myWorkType}{TFM}
+                                                \ifthenelse{\equal{\myLanguage}{spanish}}
+                                                {
+                                                    \newcommand{\myWorkTypeFull}{Trabajo Fin de Máster}
+                                                }
+                                                {
+                                                    % This could be translated. I'm leaving this in Spanish...
+                                                    % \newcommand{\myWorkTypeFull}{Master's Thesis}
+                                                    \newcommand{\myWorkTypeFull}{Trabajo Fin de Máster}
+                                                }
                                             }
                                             {
-                                            % This could be translated. I'm leaving this in Spanish...
-                                            % \newcommand{\myWorkTypeFull}{Master's Thesis}
-                                            \newcommand{\myWorkTypeFull}{Trabajo Fin de Máster}
-                                            }
-                                            }
-                                            {
-                                            \newcommand{\myWorkType}{TFG}
-                                            \newcommand{\myDegreefull}{ERROR: Defined degree (\myDegree) unknown, check \texttt{config/myconfig.tex}}
-                                            \newcommand{\myWorkTypeFull}{ERROR: Defined degree (\myDegree) unknown, check \texttt{config/myconfig.tex}}
+                                                \newcommand{\myWorkType}{TFG}
+                                                \newcommand{\myDegreefull}{ERROR: Defined degree (\myDegree) unknown, check \texttt{config/myconfig.tex}}
+                                                \newcommand{\myWorkTypeFull}{ERROR: Defined degree (\myDegree) unknown, check \texttt{config/myconfig.tex}}
+                                           }
                                             }
                                             }
                                             }
